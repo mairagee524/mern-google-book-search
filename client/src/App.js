@@ -6,6 +6,9 @@ import Search from "./pages/Search";
 import Saved from "./pages/Saved";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Wrapper from "./components/Wrapper";
+
 import './App.css';
 
 function App() {

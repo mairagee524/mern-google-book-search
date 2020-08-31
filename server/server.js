@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const db = require('./db');
-const employeeRouter = require('./routes/api-routes')
+const googleBookRouter = require('./routes/api-routes')
 
 const app = express();
-const apiPort = 3000;
+const PORT = 3000 || process.env.PORT; 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -20,4 +20,4 @@ app.get('/', (req, res) => {
 
 app.use('/api', googleBookRouter);
 
-app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

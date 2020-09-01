@@ -1,8 +1,12 @@
 import axios from "axios";
 
-export default {
+export default {\
+    // Search for books
+  searchBooks: query => {
+    return axios.get(URL + query);
+  },
   // Gets all books
-  getAlBooks: function() {
+  getAllBooks: function() {
     return axios.get("/api/books");
   },
   // Gets the book with the given id
@@ -18,3 +22,7 @@ export default {
     return axios.post("/api/books", bookData);
   }
 };
+
+
+ 
+const URL = "https://www.googleapis.com/books/v1/volumes?maxResults=10&key=AIzaSyCOvx3OS4Ceq3UAB_GK5YhqGntWEzjoWmQ";

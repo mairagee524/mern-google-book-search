@@ -19,7 +19,7 @@ const bookSchema = new Schema({
         required: true
     },
     link: { 
-        type: Date, 
+        type: String, 
         required: true 
     }
 });

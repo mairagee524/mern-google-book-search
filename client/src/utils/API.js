@@ -9,12 +9,14 @@ export default {
   },
   // Gets all books
   getAllBooks: function() {
-    return axios.get("http://localhost:3000/api/books");
+    return axios.get("api/books");
+
+    // return axios.get("http://localhost:3000/api/books");
   },
   // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
-  },
+  // getBook: function(id) {
+  //   return axios.get("/api/books/" + id);
+  // },
   // Deletes the book with the given id
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);

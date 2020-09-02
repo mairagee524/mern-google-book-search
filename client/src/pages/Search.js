@@ -1,111 +1,94 @@
-import React, { useState, useEffect } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
+import React, { Component } from "react";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, FormBtn } from "../components/SearchForm";
+import { Container, Row, Col } from "../components/Grid";
+import { BookList, BookListItem } from "../components/List";
+import { Input, SearchButton } from "../components/Input";
 
-function Books() {
-  // Setting our component's initial state
-  const [books, setBooks] = useState([])
-  const [formObject, setFormObject] = useState({})
+class Search extends Component {
 
-  // Load all books and store them with setBooks
-  useEffect(() => {
-    loadBooks()
-  }, [])
+    // instatiate state for list of books retrieved from googlebooks api and bookSearch value
+    state = {
+        books: [],
+        bookSearch: ""
+    };
 
-  // Loads all books and sets them to books
-  function loadBooks() {
-    API.getAllBooks()
-      .then(res => 
-        setBooks(res.data)
-      )
-      .catch(err => console.log(err));
-  };
+    handleInputChange = event => {
+        // Destructure the name and value properties off of event.target
+        // Update the appropriate state
+        const { name, value } = event.target;
+        this.setState({ [name]: value })
+    };
 
-  // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteBook(id) {
-    API.deleteBook(id)
-      .then(res => loadBooks())
-      .catch(err => console.log(err));
-  }
+    handleFormSubmit = event => {
+        // When the form is submitted, prevent its default behavior, get book update the books state
+        event.preventDefault();
 
-  // Handles updating component state when the user types into the input field
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setFormObject({...formObject, [name]: value})
-  };
+        // calls googlebooks api and returns searched book when search button is clicked
+        API.searchBooks(this.state.bookSearch)
+            .then(res => {
+                this.setState({ books: res.data.items }, function () {
+                    console.log(this.state.books);
+                })
+            })
+            .catch(err => console.log(err))
+    };
 
-  // When the form is submitted, use the API.saveBook method to save the book data
-  // Then reload books from the database
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    if (formObject.title && formObject.author) {
-      API.saveBook({
-        title: formObject.title,
-        author: formObject.author,
-        description: formObject.description,
-        image: formObject.image,
-        link: formObject.link
-      })
-        .then(res => loadBooks())
-        .catch(err => console.log(err));
-    }
-  };
+    render() {
+        return (
+            <div>
+                <Container>
+                    <Row>
+                        <Col size="md-12">
+                            <form>
+                                <Container>
+                                    <Row>
+                                        <Col size="xs-12 sm-12">
+                                            <Input
+                                                name="bookSearch"
+                                                value={this.state.bookSearch}
+                                                onChange={this.handleInputChange}
+                                                placeholder="Search for a Book"
+                                            />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col size="xs-12 sm-12">
+                                            <SearchButton
+                                                onClick={this.handleFormSubmit}
+                                                type="success"
+                                                className="input-lg"
+                                            >
+                                                Search
+                                            </SearchButton>
+                                        </Col>
+                                    </Row>
+                                </Container>
+                            </form>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col size="xs-12">
+                            <BookList>
+                                {this.state.books.map(book => {
+                                    return (
+                                        <BookListItem
+                                            key={book.id}
+                                            title={book.volumeInfo.title}
+                                            authors={book.volumeInfo.authors}
+                                            link={book.volumeInfo.infoLink}
+                                            description={book.volumeInfo.description}
+                                            // if no imageLinks then use placeholder image
+                                            image={book.volumeInfo.imageLinks === undefined ? "http://siddallheatingandcooling.net/_imgstore/5/1360415/thumbnail/FSeY96wEdX_eY4XkBN2jfYnuY9A.png" : `${book.volumeInfo.imageLinks.thumbnail}`}
+                                        />);
+                                })}
+                            </BookList>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+        );
+    };
 
-    return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
-            <Jumbotron>
-              <h1>What Books Should I Read?</h1>
-            </Jumbotron>
-            <form>
-              <Input
-                onChange={handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-              <Input
-                onChange={handleInputChange}
-                name="author"
-                placeholder="Author (required)"
-              />
-              <FormBtn
-                disabled={!(formObject.author && formObject.title)}
-                onClick={handleFormSubmit}
-              >
-                Submit Book
-              </FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Books On My List</h1>
-            </Jumbotron>
-            {books.length ? (
-              <List>
-                {books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+};
 
-export default Books;
+export default Search;

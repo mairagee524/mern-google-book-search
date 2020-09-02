@@ -30,6 +30,7 @@ module.exports = {
       });
   },
   update: function(req, res) {
+    console.log(req.body);
     db.Book
       .findOneAndUpdate({ id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))

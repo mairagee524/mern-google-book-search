@@ -55,9 +55,9 @@ class Search extends Component {
 
     handleBookSave = id => {
         const book = this.state.books.find(book => book.id === id);
+        console.log(book);
     
         API.goSaveBook({
-          googleId: book.id,
           title: book.volumeInfo.title,
           link: book.volumeInfo.infoLink,
           authors: book.volumeInfo.authors,
@@ -65,7 +65,6 @@ class Search extends Component {
           image: book.volumeInfo.imageLinks.thumbnail,
         }).then(() => this.getAllBooks());
       };
-    
 
     render() {
         console.log(this.state.books);

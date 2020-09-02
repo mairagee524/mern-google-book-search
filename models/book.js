@@ -9,8 +9,8 @@ const bookSchema = new Schema({
         type: String, 
         required: true 
     },
-    author: { 
-        type: String, 
+    authors: { 
+        type: [String], 
         required: true 
     },
     description: { 
@@ -27,4 +27,4 @@ const bookSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('books', bookSchema);
+module.exports = mongoose.model('Book', bookSchema);

@@ -1,61 +1,83 @@
 import React, { Component } from "react";
-import { BookList, BookListItem } from "../components/BookList";
-import { Col, Row, Container } from "../components/Grid";
+import Jumbotron from "../components/Jumbotron";
+import Card from "../components/Card";
+import Book from "../components/OneBook";
+// import Footer from "../components/Footer";
 import API from "../utils/API";
+import { Col, Row, Container } from "../components/Grid";
+import { List } from "../components/BookList";
 
-class Save extends Component {
+class Saved extends Component {
+  state = {
+    books: []
+  };
 
-    // instantiate state for saved books
-    state = {
-        savedBooks: []
-    };
+  componentDidMount() {
+    this.getAllBooks();
+  }
 
-    // loads saved books when Saved page loads
-    componentDidMount() {
-        this.loadBooks();
-    };
+  getAllBooks = () => {
+    API.getAllBooks()
+      .then(res =>
+        this.setState({
+          books: res.data
+        })
+      )
+      .catch(err => console.log(err));
+  };
 
-    // loads books from database
-    loadBooks = event => {
+  handleBookDelete = id => {
+    API.deleteBook(id).then(res => this.getAllBooks());
+  };
 
-        API.getBooks()
-            .then(res => {
-                this.setState({ savedBooks: res.data }, function () {
-                    console.log(this.state.savedBooks);
-                })
-            })
-            .catch(err => console.log(err))
-    };
+  render() {
+    return (
+      <Container>
+        <Row>
+          <Col size="md-12">
+            <Jumbotron>
+              <h1 className="text-center">
+                <strong>(React) Google Books Search</strong>
+              </h1>
+              <h2 className="text-center">Search for and Save Books of Interest.</h2>
+            </Jumbotron>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-12">
+            <Card title="Saved Books" icon="download">
+              {this.state.books.length ? (
+                <List>
+                  {this.state.books.map(book => (
+                    <Book
+                      key={book._id}
+                      title={book.title}
+                      subtitle={book.subtitle}
+                      link={book.link}
+                      authors={book.authors.join(", ")}
+                      description={book.description}
+                      image={book.image}
+                      Button={() => (
+                        <button
+                          onClick={() => this.handleBookDelete(book._id)}
+                          className="btn btn-danger ml-2"
+                        >
+                          Delete
+                        </button>
+                      )}
+                    />
+                  ))}
+                </List>
+              ) : (
+                <h2 className="text-center">No Saved Books</h2>
+              )}
+            </Card>
+          </Col>
+        </Row>
+        {/* <Footer /> */}
+      </Container>
+    );
+  }
+}
 
-    render() {
-        return (
-            <div>
-                <Container>
-                    <Row>
-                        <Col size="xs-12">
-                            <BookList>
-                                {this.state.savedBooks.map(book => {
-                                    return (
-                                        <BookListItem
-                                            key={book._id}
-                                            title={book.title}
-                                            authors={book.authors}
-                                            link={book.link}
-                                            description={book.description}
-                                            image={book.image}
-                                            id={book._id}
-                                            loadBooks={this.loadBooks}
-                                        />
-                                    );
-                                })}
-                            </BookList>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        );
-    };
-
-};
-
-export default Save;
+export default Saved;

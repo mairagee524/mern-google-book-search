@@ -5,7 +5,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/SearchForm";
+import { Input, FormBtn } from "../components/SearchForm";
 
 function Books() {
   // Setting our component's initial state

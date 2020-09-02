@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const db = require("../models");
+const models = require("../models");
 
 
 mongoose
@@ -8,7 +8,7 @@ mongoose
     console.error('Connection error', e.message)
 })
 
-const db = mongoose.connection
+const db = mongoose.connection;
 
 const bookSeed = [
     {
@@ -62,17 +62,17 @@ const bookSeed = [
     // }
 ];
 
-db.Book
-.remove({})
-.then(() => db.Book.collection.insertMany(bookSeed))
-.then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-})
-.catch(err => {
-    console.error(err);
-    process.exit(1);
-});
+// models.Book
+// .remove({})
+// .then(() => models.Book.collection.insertMany(bookSeed))
+// .then(data => {
+//     console.log(data.result.n + " records inserted!");
+//     process.exit(0);
+// })
+// .catch(err => {
+//     console.error(err);
+//     process.exit(1);
+// });
   
 
 module.exports = db;

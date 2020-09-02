@@ -4,14 +4,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Saved from "./pages/Saved";
 import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
-import Hero from "./components/Hero";
-import Nav from "./components/Nav";
+import Nav from "./components/NavBar";
 
 const App = () => (
   <Router>
     <div>
       <Nav />
-      <Hero />
         <Switch>
           <Route exact path={["/", "/search"]}>
             <Search />

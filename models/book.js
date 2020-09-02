@@ -25,8 +25,3 @@ const bookSchema = new Schema({
 });
 
 module.exports = mongoose.model('books', bookSchema);
-
-//equal to...
-// const EmployDirect = mongoose.model("employees", EmployeeSchema);
-
-// module.exports = EmployDirect;

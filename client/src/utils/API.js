@@ -1,13 +1,15 @@
 import axios from "axios";
 
-export default {\
+const URL = "https://www.googleapis.com/books/v1/volumes?maxResults=10&q=";
+
+export default {
     // Search for books
   searchBooks: query => {
     return axios.get(URL + query);
   },
   // Gets all books
   getAllBooks: function() {
-    return axios.get("/api/books");
+    return axios.get("http://localhost:3000/api/books");
   },
   // Gets the book with the given id
   getBook: function(id) {
@@ -22,7 +24,3 @@ export default {\
     return axios.post("/api/books", bookData);
   }
 };
-
-
- 
-const URL = "https://www.googleapis.com/books/v1/volumes?maxResults=10&key=AIzaSyCOvx3OS4Ceq3UAB_GK5YhqGntWEzjoWmQ";

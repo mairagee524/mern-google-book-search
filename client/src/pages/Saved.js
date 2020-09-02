@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BookList, BookListItem } from "../components/List";
+import { BookList, BookListItem } from "../components/BookList";
 import { Col, Row, Container } from "../components/Grid";
 import API from "../utils/API";
 

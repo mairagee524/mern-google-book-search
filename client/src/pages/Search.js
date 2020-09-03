@@ -27,15 +27,16 @@ class Search extends Component {
     getAllBooks = () => {
         API.getAllBooks(this.state.q)
         .then(res =>
-        this.setState({
-            books: res.data
-        })
+            this.setState({
+                books: res.data
+            })
         )
         .catch(() =>
-        this.setState({
-            books: [],
-            message: "No New Books Found, Try a Different Query"
-        }));
+            this.setState({
+                books: [],
+                message: "Sorry, no books found! Try another query"
+            })
+        );
     };
 
     handleFormSubmit = event => {
@@ -45,10 +46,7 @@ class Search extends Component {
         // calls googlebooks api and returns searched book when search button is clicked
         API.searchBooks(this.state.q)
             .then(res => 
-                // console.log(res);
                 this.setState({ books: res.data.items }) 
-                //     function () {
-                // })
             )
             .catch(err => console.log(err))
     };
@@ -63,9 +61,9 @@ class Search extends Component {
           authors: book.volumeInfo.authors,
           description: book.volumeInfo.description,
           image: book.volumeInfo.imageLinks.thumbnail,
-        }).then(() => this.getAllBooks());
-      };
-
+        })
+    };
+    
     render() {
         console.log(this.state.books);
         return (
@@ -98,12 +96,11 @@ class Search extends Component {
                   {this.state.books.map(book => (
                     <Book
                       key={book.id}
-                      title={book.volumeInfo.title}
-                      subtitle={book.volumeInfo.subtitle}
-                      link={book.volumeInfo.infoLink}
-                      authors={book.volumeInfo.authors.join(", ")}
-                      description={book.volumeInfo.description}
-                      image={book.volumeInfo.imageLinks.thumbnail}
+                      title={book.volumeInfo.title ? book.volumeInfo.title : ""}
+                      link={book.volumeInfo.infoLink ? book.volumeInfo.infoLink : ""}
+                      authors={book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : ""}
+                      description={book.volumeInfo.description ? book.volumeInfo.description : ""}
+                      image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ""}
                       Button={() => (
                         <button
                           onClick={() => this.handleBookSave(book.id)}

@@ -5,7 +5,6 @@ const URL = "https://www.googleapis.com/books/v1/volumes?maxResults=10&q=";
 export default {
     // Search for books from the Google API
   searchBooks: q => {
-    console.log(q);
     return axios.get(URL + q);
   },
   // Gets all saved books

@@ -59,7 +59,10 @@ class Saved extends Component {
                       image={book.image}
                       Button={() => (
                         <button
-                          onClick={() => this.handleBookDelete(book._id)}
+                          onClick={() => {
+                            this.handleBookDelete(book._id);
+                            alert("The book will be removed from your saved list.")
+                          }}
                           className="btn btn-danger ml-2"
                         >
                           Delete

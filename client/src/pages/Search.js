@@ -63,7 +63,7 @@ class Search extends Component {
           image: book.volumeInfo.imageLinks.thumbnail,
         })
     };
-    
+
     render() {
         console.log(this.state.books);
         return (
@@ -103,7 +103,10 @@ class Search extends Component {
                       image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : ""}
                       Button={() => (
                         <button
-                          onClick={() => this.handleBookSave(book.id)}
+                          onClick={() => {
+                            this.handleBookSave(book.id);
+                            alert("Your book has been saved!")
+                        }}
                           className="btn btn-primary ml-2"
                         >
                           Save

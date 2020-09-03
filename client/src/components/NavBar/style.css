@@ -1,5 +1,5 @@
 .nav-container {
-  background-color: #b86161
+  background-color: #454545
 }
 
 .navbar-nav {
@@ -12,9 +12,12 @@
 .nav-item {
   float: left;
 }
-/* 
-li Link {
+
+.navbar a {
   display: block;
-  padding: 8px;
-  background-color: #b86161;
-} */
+  padding: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 30px;
+  text-decoration: none;
+  color: #F1FFFA;
+}

@@ -2,15 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-
 function Navbar() {
     return (
-        <nav className="navbar nav-container navbar-expand-lg text-light">
-            <div className="container nav-container">
+        <nav className="navbar nav-container">
+            <div className="nav-container">
                 <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link className="navbar-brand" to="/">Google Books</Link>
-                    </li>
                     <li className="nav-item">
                         <Link
                             to="/search"

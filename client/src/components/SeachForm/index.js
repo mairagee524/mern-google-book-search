@@ -1,4 +1,6 @@
 import React from "react";
+// import { Button } from '@chakra-ui/core';
+
 
 function Form(props) {
   return (
@@ -19,6 +21,7 @@ function Form(props) {
       </div>
       <div className="pull-right">
         <button
+          // variantColor="green"          
           onClick={props.handleFormSubmit}
           type="submit"
           className="btn btn-lg btn-danger float-right"

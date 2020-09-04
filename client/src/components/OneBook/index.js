@@ -1,21 +1,24 @@
 import React from "react";
 import { ListItem } from "../BookList";
 import { Row, Col } from "../Grid";
-// import "./style.css";
+import "./style.css";
 
 function Book({ title, authors, link, description, image, Button }) {
   return (
     <ListItem>
       <Row className="flex-wrap-reverse">
         <Col size="md-8">
-          <h3 className="font-italic">{title}</h3>
+          <h3 className="book-title font-italic">{title}</h3>
         </Col>
         <Col size="md-4">
           <div className="btn-container">
-            <a className="btn btn-light" target="_blank" rel="noopener noreferrer" href={link}>
+            <button>
+            <a 
+            className="view-btn" target="_blank" rel="noopener noreferrer" href={link}>
               View
             </a>
-            <Button />
+            </button>
+          <Button />
           </div>
         </Col>
       </Row>

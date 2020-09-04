@@ -1,11 +1,12 @@
 import React from "react";
+import "./style.css"
 
 function Form(props) {
   return (
     <form>
       <div className="form-group">
-        <label htmlFor="Query">
-          <strong>Book</strong>
+        <label className="search-name" htmlFor="Query">
+          <strong>Book:</strong>
         </label>
         <input
           className="form-control"
@@ -16,13 +17,10 @@ function Form(props) {
           onChange={props.handleInputChange}
           required
         />
-      </div>
-      <div className="pull-right">
-        <button
-          // variantColor="green"          
+         <button
           onClick={props.handleFormSubmit}
           type="submit"
-          className="btn btn-lg btn-danger float-right"
+          className="submit-btn"
         >
           Search
         </button>

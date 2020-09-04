@@ -3,3 +3,35 @@
     color: #93B7BE;
     font-size: 30px;
 }
+
+.author {
+    font-size: 25px;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.view-btn {
+    padding: 10px;
+    background-color: #D5C7BC;
+    border-color: #D5C7BC;
+    border-style: solid;
+    border-radius: 20px;
+    color: #F1FFFA;
+    font-size: 18px;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.img-desc {
+    display: flex;
+}
+
+.img-thumbnail {
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.book-desc {
+    padding: 30px;
+    font-size: 20px;
+    font-family: 'Rajdhani', sans-serif;
+}

@@ -5,6 +5,7 @@ import Book from "../components/OneBook";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/BookList";
+import "../pages.css"
 
 class Saved extends Component {
   state = {
@@ -29,7 +30,7 @@ class Saved extends Component {
     API.deleteBook(id).then(res => this.getAllBooks());
   };
 
-  render() {
+  render() {  
     return (
       <Container>
         <Row>
@@ -44,7 +45,8 @@ class Saved extends Component {
         </Row>
         <Row>
           <Col size="md-12">
-            <Card title="Saved Books" icon="download">
+            <h2 className="saved-list-title"> Saved Books</h2>
+            <Card icon="download">
               {this.state.books.length ? (
                 <List>
                   {this.state.books.map(book => (
@@ -62,7 +64,7 @@ class Saved extends Component {
                             this.handleBookDelete(book._id);
                             alert("The book will be removed from your saved list.")
                           }}
-                          className="btn btn-danger ml-2"
+                          className="delete-btn btn-danger ml-2"
                         >
                           Delete
                         </button>

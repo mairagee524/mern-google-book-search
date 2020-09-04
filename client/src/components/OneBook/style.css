@@ -16,9 +16,10 @@
     border-style: solid;
     border-radius: 20px;
     color: #F1FFFA;
-    font-size: 18px;
+    font-size: 20px;
     text-decoration: none;
     font-family: 'Rajdhani', sans-serif;
+    width: 150px;
 }
 
 .img-desc {

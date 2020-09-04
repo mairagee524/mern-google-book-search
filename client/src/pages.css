@@ -1,0 +1,48 @@
+.saved-list-title {
+    font-family: 'Poiret One', cursive;
+    text-align: center;
+    font-size: 40px;
+}
+
+.save-btn, .delete-btn {
+    padding: 10px;
+    background-color: #D5C7BC;
+    border-color: #D5C7BC;
+    border-style: solid;
+    border-radius: 20px;
+    color: #F1FFFA;
+    font-size: 20px;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    margin-left: 30px;
+    width: 150px;
+}
+
+#home {
+    margin-bottom: 60px;
+}
+
+.results, .result-message {
+    text-align: center;
+    font-family: 'Poiret One', cursive;
+    font-size: 30px;
+}
+
+.results {
+    margin-top: 60px;
+}
+
+.result-message {
+    margin-top: 50px;
+    border-radius: 10px;
+    border-color: #785964;
+    border-style: solid;
+    text-align: center;
+    font-size: 40px;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #785964;
+    color: #F1FFFA;
+}

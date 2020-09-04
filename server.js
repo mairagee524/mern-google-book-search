@@ -6,10 +6,9 @@ const db = require('./db');
 const googleBookRouter = require('./routes/api')
 
 const app = express();
-const PORT = 3000 || process.env.PORT; 
+const PORT = process.env.PORT || 3000 ; 
 
 if (app.get('env') === 'development') { require('dotenv').config(); }
-
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -28,10 +28,10 @@ function Book({ title, authors, link, description, image, Button }) {
       </Row>
       <Col size="md-4">
         <div className="btn-container">
-          <button 
+          <a 
           className="view-btn" target="_blank" rel="noopener noreferrer" href={link}>
             View
-          </button>
+          </a>
           <Button />
         </div>
       </Col>

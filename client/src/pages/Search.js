@@ -54,7 +54,6 @@ class Search extends Component {
 
   handleBookSave = id => {
     const book = this.state.books.find(book => book.id === id);
-    console.log(book);
 
     API.goSaveBook({
       title: book.volumeInfo.title,
@@ -66,7 +65,6 @@ class Search extends Component {
   };
 
   render() {
-    console.log(this.state.books);
     return (
       <Container>
         <Row>

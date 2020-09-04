@@ -2,11 +2,13 @@
     font-weight: 700;
     color: #93B7BE;
     font-size: 30px;
+    text-align: center;
 }
 
 .author {
     font-size: 25px;
     font-family: 'Rajdhani', sans-serif;
+    text-align: center;
 }
 
 .view-btn {
@@ -28,11 +30,15 @@
 
 .img-thumbnail {
     margin-left: 10px;
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 .book-desc {
-    padding: 30px;
     font-size: 20px;
     font-family: 'Rajdhani', sans-serif;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
 }

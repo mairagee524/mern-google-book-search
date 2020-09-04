@@ -10,15 +10,6 @@ function Book({ title, authors, link, description, image, Button }) {
         <Col size="md-8">
           <h3 className="book-title font-italic">{title}</h3>
         </Col>
-        <Col size="md-4">
-          <div className="btn-container">
-            <button 
-            className="view-btn" target="_blank" rel="noopener noreferrer" href={link}>
-              View
-            </button>
-          <Button />
-          </div>
-        </Col>
       </Row>
       <Row>
         <Col size="md-6">
@@ -35,6 +26,15 @@ function Book({ title, authors, link, description, image, Button }) {
           </Col>
         </div>
       </Row>
+      <Col size="md-4">
+        <div className="btn-container">
+          <button 
+          className="view-btn" target="_blank" rel="noopener noreferrer" href={link}>
+            View
+          </button>
+          <Button />
+        </div>
+      </Col>
     </ListItem>
   );
 }

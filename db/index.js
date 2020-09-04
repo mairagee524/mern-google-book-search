@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const models = require("../models");
 
 
-mongoose
-.connect('mongodb://127.0.0.1:27017/googleBookSearch' ||  process.env.MONGODB_URI , 
-  { useNewUrlParser: true,  
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/googleBookSearch', 
+  { 
+    useNewUrlParser: true,  
     useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false
